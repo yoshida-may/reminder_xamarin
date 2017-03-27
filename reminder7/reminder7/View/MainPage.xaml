@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="reminder7.View.MainPage">
+
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand"
+                 Orientation="Vertical">
+
+        <Button Text="追加" Clicked="AddItem"/>
+        
+      <ListView x:Name="ListView" BackgroundColor="White" Header="【タスク】">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <TextCell Text="{Binding DisplayTitle}" Detail="{Binding DisplayDateAndTime}" >
+              <TextCell.ContextActions>
+                <MenuItem Text="削除" IsDestructive="true" Clicked="Delete" CommandParameter="{Binding .}"/>
+               <MenuItem Text="【終了】へ移動" IsDestructive="true" Clicked="Move" CommandParameter="{Binding .}"/>
+              </TextCell.ContextActions>
+            </TextCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    
+      <ListView x:Name="EndListView" BackgroundColor="Silver" Header="【終了】">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <TextCell Text="{Binding DisplayTitle}" Detail="{Binding DisplayDateAndTime}" >
+              <TextCell.ContextActions>
+                <MenuItem Text="削除" IsDestructive="true" Clicked="Delete" CommandParameter="{Binding .}"/>
+               <MenuItem Text="【タスク】へ移動" IsDestructive="true" Clicked="Move" CommandParameter="{Binding .}"/>
+              </TextCell.ContextActions>
+            </TextCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
